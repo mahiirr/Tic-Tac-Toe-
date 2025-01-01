@@ -33,10 +33,28 @@ body{
     background-color: #fff;
 }
 #reset{
- padding: 1rem;
+ padding: 0.6rem;
  font-size: 1.25rem;
  border-radius: 1rem;
  border: none;
  background-color: #191913;
  color: #fff;
+}
+#new-game{
+    padding: 0.6rem;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #191913;
+    color: #fff;
+}
+.msg{
+    font-size: 8vmin;
+    color: #fff;
+}
+.msg-container{
+    height: 30vmin;
+}
+.hide{
+    display: none;
 }
