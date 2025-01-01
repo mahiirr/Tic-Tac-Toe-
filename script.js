@@ -33,10 +33,12 @@ boxes.forEach((box)=>{
       if(trunO){
          //playerO
          box.innerText="O";
+         box.style.color="red";
          trunO=false;
       }else{
          //playerX
          box.innerText="X";
+         box.style.color="Blue";
          trunO=true;
       }
       box.disabled= true;
