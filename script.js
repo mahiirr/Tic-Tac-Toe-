@@ -1,5 +1,5 @@
 let boxes = document.querySelectorAll(".box");
-let reset = document.querySelector("#reset");
+let resetbtn = document.querySelector("#reset");   
 let newgame = document.querySelector("#new-game");
 let msgcontainer= document.querySelector(".msg-container");
 let msg = document.querySelector(".msg");
@@ -18,13 +18,23 @@ const winpatterns =[
    [2,4,6]   
 ]
 
+//resetfunction
+const resetgame= () =>{
+    trunO=true;
+    enabledboxes();
+    msgcontainer.classList.add("hide");
+    
+}
+
+//Each players truns function
 boxes.forEach((box)=>{
-   box.addEventListener("click",(evnt)=>{
-      console.log("button was clicked");
+   box.addEventListener("click",()=>{
       if(trunO){
+         //playerO
          box.innerText="O";
          trunO=false;
       }else{
+         //playerX
          box.innerText="X";
          trunO=true;
       }
@@ -32,13 +42,31 @@ boxes.forEach((box)=>{
       checkwinner();
    })
 });
+
+//if game was finish then disabledboxes input
+const disabledboxes= () =>
+   {
+   for(let box of boxes){
+      box.disabled =true;
+   }
+}
+ 
+//if they reset or start new then Enableboxes again
+const enabledboxes= () =>{
+   for(let box of boxes){
+      box.disabled=false;
+      box.innerText="";
+   }
+}
+
+//printing msg for Winner
 const showwinner= (winner) =>{
    msg.innerText=`Congratulations, Winner is ${winner}`;
    msgcontainer.classList.remove("hide");
+   disabledboxes();
 }
 
-
-
+//funtion of checking winner 
 const checkwinner = ()=>{
    for(let pattern of winpatterns){
       let pos1val = boxes[pattern[0]].innerText;
@@ -46,9 +74,12 @@ const checkwinner = ()=>{
       let pos3val = boxes[pattern[2]].innerText;
       if(pos1val != "" && pos2val != "" && pos3val != ""){
          if(pos1val === pos2val && pos2val === pos3val ){
-            console.log("winner",pos1val);
             showwinner(pos1val);
          }
       }
    }
 };
+
+//reset and new game button event
+newgame.addEventListener("click",resetgame);
+reset.addEventListener("click",resetgame);
