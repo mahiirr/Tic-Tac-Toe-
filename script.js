@@ -1,6 +1,8 @@
 let boxes = document.querySelectorAll(".box");
 let reset = document.querySelector("#reset");
-
+let newgame = document.querySelector("#new-game");
+let msgcontainer= document.querySelector(".msg-container");
+let msg = document.querySelector(".msg");
 //palyerO trun 
 let trunO=true;
 
@@ -30,6 +32,13 @@ boxes.forEach((box)=>{
       checkwinner();
    })
 });
+const showwinner= (winner) =>{
+   msg.innerText=`Congratulations, Winner is ${winner}`;
+   msgcontainer.classList.remove("hide");
+}
+
+
+
 const checkwinner = ()=>{
    for(let pattern of winpatterns){
       let pos1val = boxes[pattern[0]].innerText;
@@ -38,6 +47,7 @@ const checkwinner = ()=>{
       if(pos1val != "" && pos2val != "" && pos3val != ""){
          if(pos1val === pos2val && pos2val === pos3val ){
             console.log("winner",pos1val);
+            showwinner(pos1val);
          }
       }
    }
