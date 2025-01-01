@@ -3,6 +3,7 @@ let resetbtn = document.querySelector("#reset");
 let newgame = document.querySelector("#new-game");
 let msgcontainer= document.querySelector(".msg-container");
 let msg = document.querySelector(".msg");
+
 //palyerO trun 
 let trunO=true;
 
@@ -75,10 +76,21 @@ const checkwinner = ()=>{
       if(pos1val != "" && pos2val != "" && pos3val != ""){
          if(pos1val === pos2val && pos2val === pos3val ){
             showwinner(pos1val);
+            return;
          }
       }
    }
+   checkdraw();
 };
+
+const checkdraw =( ) =>{
+   let allfilled = Array.from(boxes).every((box) => box.innerText !=="");
+   if(allfilled){
+      msg.innerText="It's Draw!"
+      msgcontainer.classList.remove("hide");
+      disabledboxes();
+   }
+}
 
 //reset and new game button event
 newgame.addEventListener("click",resetgame);
